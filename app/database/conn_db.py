@@ -1,4 +1,6 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData
 
-db_url = "sqlite+pysqlite:///database"
-engine = create_engine(db_url, echo=True)
+engine = create_engine("sqlite+pysqlite:///database.db")
+
+meta = MetaData()
+conn = engine.connect()

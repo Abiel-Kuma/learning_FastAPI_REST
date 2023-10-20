@@ -7,3 +7,7 @@ FastAPI \
 Sqlite
 
 ## Objetivos
+
+
+## Comandos
+ uvicorn main:app 
