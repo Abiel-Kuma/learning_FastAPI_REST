@@ -4,11 +4,12 @@
 ## Tecnologias
  sqlalchemy, FastAPI, Sqlite
 
-## Objetivos
-
-
 ## Comandos
- uvicorn main:app 
+ Start app
+  ~~~python
+  uvicorn app.main:app --reload
+  ~~~
+  
 
 ## parte 1: Casos de Uso para API de Autenticación y Autorización
  Crea una API de autenticación y autorización que permita a los usuarios registrarse, iniciar sesión y gestionar sus perfiles. Asegúrate de implementar un sistema seguro de gestión de tokens.

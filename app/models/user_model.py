@@ -1,15 +1,16 @@
-from sqlalchemy import Table, Column
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import declarative_base
 from database import conn_db
-from sqlalchemy.sql.sqltypes import Integer, String
 
+metadata = conn_db.metadata
 engine = conn_db.engine
-meta = conn_db.meta
+base = declarative_base()
 
-users = Table("user", meta,
-        Column("id", Integer),
-        Column("name", String(255)), # nullable =False),
-        Column("email", String(255)), # nullable= False),
-        Column("password", String(255))
-    )
+class User(base):
+    __tablename__ = "User"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255), nullable=False)
+    email = Column(String(255), nullable=False, unique=True)
+    password = Column(String(255))
 
-meta.create_all(engine)
+base.metadata.create_all(engine)
