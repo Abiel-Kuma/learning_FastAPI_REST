@@ -7,7 +7,7 @@
 ## Comandos
  Start app
   ~~~python
-  uvicorn app.main:app --reload
+  uvicorn main:app --reload
   ~~~
  generar e Instalar las dependecias del proyecto
   ~~~
