@@ -9,6 +9,11 @@
   ~~~python
   uvicorn app.main:app --reload
   ~~~
+ generar e Instalar las dependecias del proyecto
+  ~~~
+  python -m pip freeze > requirements.txt
+  python -m pip install -r requirements.txt
+  ~~~
   
 
 ## parte 1: Casos de Uso para API de Autenticación y Autorización
