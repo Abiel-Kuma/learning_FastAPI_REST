@@ -19,7 +19,7 @@
 ## parte 1: Casos de Uso para API de Autenticación y Autorización
  Crea una API de autenticación y autorización que permita a los usuarios registrarse, iniciar sesión y gestionar sus perfiles. Asegúrate de implementar un sistema seguro de gestión de tokens.
 
-- [ ] Registro de usuario: Permite a los usuarios registrarse en la aplicación proporcionando su información básica, como nombre, dirección de correo electrónico y contraseña.
+- [x] Registro de usuario: Permite a los usuarios registrarse en la aplicación proporcionando su información básica, como nombre, dirección de correo electrónico y contraseña.
 
 - [ ] Inicio de sesión: Los usuarios pueden iniciar sesión en la aplicación proporcionando sus credenciales (correo electrónico y contraseña) para acceder a su cuenta.
 
