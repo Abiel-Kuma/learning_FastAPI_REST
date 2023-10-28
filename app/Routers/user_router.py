@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from .database  import engine, SessionLocal, Base
-from .user_models import User
-from .user_schema import UserScheme
+from ..database.database  import engine, SessionLocal, Base
+from ..models.user_models import User
+from ..schemas.user_schema import UserScheme
 
 user_router = APIRouter()
 
