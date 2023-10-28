@@ -1,17 +1,9 @@
 from fastapi import APIRouter
 from .database  import engine, SessionLocal, Base
-from pydantic import BaseModel
 from .user_models import User
+from .user_schema import UserScheme
 
 user_router = APIRouter()
-
-
-
-class UserScheme(BaseModel):
-    name: str
-    email: str
-    password: str
-    is_admin: bool
 
 @user_router.get("/getUsers")
 def read_users():
@@ -28,4 +20,4 @@ def create_user(user: UserScheme):
     db.add(db_user)
     db.commit()
     db.close()
-    return db_user
+    return db_user      
