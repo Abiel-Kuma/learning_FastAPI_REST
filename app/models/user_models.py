@@ -7,5 +7,5 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100))
     email = Column(String(255), unique=True, nullable=True)
-    password = Column(String(100))
+    password = Column(String(255), nullable=True)
     is_admin = Column(Boolean, default=False)

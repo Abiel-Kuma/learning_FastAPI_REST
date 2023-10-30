@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
+import bcrypt
 from ..database.database  import engine, SessionLocal, Base
 from ..models.user_models import User
 from ..schemas.user_schema import UserScheme
@@ -14,10 +16,11 @@ def read_users():
 
 @user_router.post("/postUsers")
 def create_user(user: UserScheme):
+    user.password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt(8))
     db = SessionLocal()
     db_user = User(name=user.name, email=user.email, password=user.password, is_admin=False)
     
     db.add(db_user)
     db.commit()
     db.close()
-    return db_user      
+    return JSONResponse(content={"message" : "usuario creado exitosamente."} , status_code=201)
