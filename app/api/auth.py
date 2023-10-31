@@ -1,25 +1,37 @@
+from pydantic import BaseModel
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 import bcrypt
-from ..schemas.user_schema import UserScheme
+from ..models.user_models import User
 from ..database.database import SessionLocal
 
-auth = APIRouter()
+class UserLogin(BaseModel):
+    name: str
+    password: str
 
+auth_router = APIRouter()
 
-@auth.post("/login")
-def login(user = UserScheme):
-    db = SessionLocal()
-    user_in_db = db.query(users).filter(name == user.name).first()
-    
-    if not user_in_db:
-        return JSONResponse(content={"message": "Usuario no encontrado"} , status_code=404)
+@auth_router.post("/login")
+def login(user: UserLogin):
+    try:
+        # todo: incriptar la contraseña entrante
+        db = SessionLocal()
+        user_in_db = db.query(User).filter(User.name == user.name).first()
+          
+        # Verifica si el usuario existe
+        if not user_in_db:  
+            return JSONResponse(content={"message": "Usuario no encontrado"}, status_code=404)
+        
+        # Verifica la contraseña ingresada por el usuario con la contraseña almacenada
+        if not bcrypt.checkpw(user.password, user_in_db.password):
+            return JSONResponse(content={"message": "Contraseña incorrecta"}, status_code=400)
 
-    
-     # Verifica la contraseña ingresada por el usuario con la contraseña almacenada
-    if not bcrypt.checkpw(user.password.encode('utf-8'), user_in_db.password.encode('utf-8')):
-        db.close()
-        return JSONResponse(status_code=400, detail="Contraseña incorrecta")
-
-    db.close()
+        
+        return JSONResponse(content={"message": "Inicio de sesión exitoso"}, status_code=200)
+    except Exception as e:
+        # Manejar la excepción de manera apropiada, por ejemplo, registrando el error
+        print("error: " + str(e))
+        return JSONResponse(content={"message": "Error interno del servidor"}, status_code=500)
+    finally:
+        db.close()  
