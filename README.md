@@ -21,7 +21,7 @@
 
 - [x] Registro de usuario: Permite a los usuarios registrarse en la aplicación proporcionando su información básica, como nombre, dirección de correo electrónico y contraseña.
 
-- [ ] Inicio de sesión: Los usuarios pueden iniciar sesión en la aplicación proporcionando sus credenciales (correo electrónico y contraseña) para acceder a su cuenta.
+- [x] Inicio de sesión: Los usuarios pueden iniciar sesión en la aplicación proporcionando sus credenciales (correo electrónico y contraseña) para acceder a su cuenta.
 
 - [ ] Restablecimiento de contraseña: En caso de olvidar la contraseña, los usuarios pueden solicitar un restablecimiento de contraseña a través de la API. Recibirán un enlace de restablecimiento en su correo electrónico.
 
