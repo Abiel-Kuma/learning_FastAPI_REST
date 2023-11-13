@@ -25,10 +25,15 @@ def create_user(user: UserScheme):
     db_user = User(
         name=user.name, email=user.email, password=user.password, is_admin=False
     )
-    
+
     db.add(db_user)
     db.commit()
     db.close()
     return JSONResponse(
         content={"message": "usuario creado exitosamente."}, status_code=201
     )
+
+# todo: restablecer contraseña
+@user_router.post("/restPass")
+def restPass():
+    pass
