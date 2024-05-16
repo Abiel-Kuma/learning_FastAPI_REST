@@ -1,11 +1,9 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from passlib.context import CryptContext
+import bcrypt
 from ..database.database import engine, SessionLocal, Base
 from ..models.user_models import User
 from ..schemas.user_schema import UserScheme
-
-password_context = CryptContext(schemes=["sha256_crypt"])
 
 user_router = APIRouter()
 
@@ -20,7 +18,7 @@ def read_users():
 
 @user_router.post("/postUsers")
 def create_user(user: UserScheme):
-    user.password = password_context.hash(user.password)
+    user.password = bcrypt.hashpw(user.password.encode("utf-8"), bcrypt.gensalt(8))
     db = SessionLocal()
     db_user = User(
         name=user.name, email=user.email, password=user.password, is_admin=False
